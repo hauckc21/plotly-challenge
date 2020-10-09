@@ -1,5 +1,9 @@
 console.log("This is app.js");
 
+function DrawBubblechart(sampleId) {
+    console.log(`DrawBarGraph(${sampleId})`);
+}
+
 function InitDashboard()
 {
     console.log(`Calling InitDashboard()`);
@@ -12,7 +16,20 @@ function InitDashboard()
 
         //Get the names
         var sampleNames = data.names;
+
+        //populate the selector with all the sample Ids
+        sampleNames.forEach((sampleId) => {
+        selector.append("option")
+            .text(sampleId)
+            .property("value", sampleID);
+
         });
+
+        var sampleId = sampleNames[0];
+        console.log("Starting Sample: ", sampleId);
+
+        DrawBargraph(sampleId);
+    });
 }
 
 InitDashboard();
@@ -20,9 +37,7 @@ InitDashboard();
 
 
 
-// function DrawBubblechart(sampleId) {
-//     console.log(`DrawBarGraph(${sampleId})`);
-// }
+
 
 // function optionChanged(newSampleId) {
 //     console.log(`User selected ${newSampleId}`);
@@ -30,8 +45,3 @@ InitDashboard();
 
 
 
-// //populate the selector with all the sample Ids
-// sampleNames.forEach((sampleId) => {
-//     selector.append("option")
-//         .text(sampleId)
-//         .property("value", sampleID);
