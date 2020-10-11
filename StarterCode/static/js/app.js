@@ -8,11 +8,16 @@ function DrawBubblechart(sampleId) {
     console.log(`DrawBubblechart(${sampleId})`);
 }
 
+function ShowMetadata(sampleId) {
+    console.log(`ShowMetadata(${sampleId})`);
+}
+
 function optionChanged(newSampleId) {
     console.log(`User selected ${newSampleId}`);
 
     DrawBargraph(newSampleId);
     DrawBubblechart(newSampleId);
+    ShowMetadata(newSampleId);
 }
 
 function InitDashboard() {
@@ -43,6 +48,7 @@ function InitDashboard() {
             //Draw the graphs
             DrawBargraph(sampleId);
             DrawBubblechart(sampleId);
+            ShowMetadata(sampleId);
 
     });
 }
