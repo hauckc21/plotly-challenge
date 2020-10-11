@@ -45,9 +45,12 @@ function ShowMetadata(sampleId) {
         var result = resultArray[0];
         
         var panel = d3.select('#sample-metadata');
+        panel.html("");
 
-        Object.defineProperties(result).forEach(([key, value]) => {
+        Object.entries(result).forEach(([key, value]) => {
 
+            var textToShow = `SampleId = ${sampleId}`;
+            panel.append("h6").text(textToShow);
         });
     });
 }
