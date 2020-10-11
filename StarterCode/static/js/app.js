@@ -33,6 +33,33 @@ function DrawBargraph(sampleId) {
 
 function DrawBubblechart(sampleId) {
     console.log(`DrawBubblechart(${sampleId})`);
+
+    d3.json("samples.json").then((data) => {
+        
+        var samples = data.samples;
+        var resultArray = samples.filter(ot => ot.id == sampleId);
+        var result = resultArray[0];
+
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
+
+        var bubbleData = {
+            x: otu_ids,
+            y: sample_values,
+            type: "bubble",
+            text: otu_labels,
+            orientation: "h",
+        }
+
+        var bubbleLayout = {
+            title: "Number of Infected",
+            margin: {t: 100, l: 300}
+        }
+        Plotly.newPlot("bubble", [bubbleData], bubbleLayout);
+    });
+    
+
 }
 
 function ShowMetadata(sampleId) {
@@ -47,10 +74,8 @@ function ShowMetadata(sampleId) {
         var panel = d3.select('#sample-metadata');
         panel.html("");
 
-        Object.entries(result).forEach(([key, value]) => {
-
-            var textToShow = `SampleId = ${sampleId}`;
-            panel.append("h6").text(textToShow);
+        Object.entries(result).forEach((key) => {   
+            panel.append("h6").text(key[0].toLocaleLowerCase() + ": " + key[1] + " \n");
         });
     });
 }
