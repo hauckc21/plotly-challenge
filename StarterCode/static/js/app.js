@@ -47,15 +47,27 @@ function DrawBubblechart(sampleId) {
         var bubbleData = {
             x: otu_ids,
             y: sample_values,
-            type: "bubble",
+            mode: "markers",
+            marker: {
+                color: otu_ids,
+                colorscale: "Earth",
+                size: sample_values
+            },
+            // type: "bubble",
             text: otu_labels,
-            orientation: "h",
+            // orientation: "h",
         }
 
         var bubbleLayout = {
-            title: "Number of Infected",
-            margin: {t: 100, l: 300}
-        }
+            // title: "OTU ID",
+            margin: { t: 0},
+            xaxis: {
+                title: "<b>OTU ID</b>",
+            },
+            showlegend: false
+           
+        };
+
         Plotly.newPlot("bubble", [bubbleData], bubbleLayout);
     });
     
