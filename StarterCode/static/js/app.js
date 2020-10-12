@@ -1,18 +1,22 @@
+// Note: Some code utilized from Instructor Dom's class room example
 console.log("This is app.js");
 
+//Create function to draw bar graph
 function DrawBargraph(sampleId) {
     console.log(`DrawBargraph(${sampleId})`);
 
     d3.json("samples.json").then((data) => {
-        
+        // get samples data
         var samples = data.samples;
+        // filter on id
         var resultArray = samples.filter(s => s.id == sampleId);
+        // only one match for each ID so get index 0:
         var result = resultArray[0];
-
+        // get info for selected id
         var otu_ids = result.otu_ids;
         var otu_labels = result.otu_labels;
         var sample_values = result.sample_values;
-
+        
         var yticks = otu_ids.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse();
         var barData = {
             x: sample_values.slice(0, 10).reverse(),
@@ -31,15 +35,20 @@ function DrawBargraph(sampleId) {
 
 }
 
+//create function to draw bubblechart
 function DrawBubblechart(sampleId) {
     console.log(`DrawBubblechart(${sampleId})`);
 
     d3.json("samples.json").then((data) => {
         
+        // get samples for this id
         var samples = data.samples;
+        // filter on requested id
         var resultArray = samples.filter(ot => ot.id == sampleId);
+        // only one match for each ID so get index 0:
         var result = resultArray[0];
 
+        // get info for selected id
         var otu_ids = result.otu_ids;
         var otu_labels = result.otu_labels;
         var sample_values = result.sample_values;
@@ -53,13 +62,10 @@ function DrawBubblechart(sampleId) {
                 colorscale: "Earth",
                 size: sample_values
             },
-            // type: "bubble",
-            text: otu_labels,
-            // orientation: "h",
+            
         }
 
         var bubbleLayout = {
-            // title: "OTU ID",
             margin: { t: 0},
             xaxis: {
                 title: "<b>OTU ID</b>",
@@ -74,6 +80,7 @@ function DrawBubblechart(sampleId) {
 
 }
 
+//create function to populate metadata table
 function ShowMetadata(sampleId) {
     console.log(`ShowMetadata(${sampleId})`);
 
@@ -92,6 +99,7 @@ function ShowMetadata(sampleId) {
     });
 }
 
+// create function to allow user to change sample id
 function optionChanged(newSampleId) {
     console.log(`User selected ${newSampleId}`);
 
@@ -100,6 +108,7 @@ function optionChanged(newSampleId) {
     ShowMetadata(newSampleId);
 }
 
+// function to initialize dashboard and load data
 function InitDashboard() {
     console.log(`Calling InitDashboard()`);
 
