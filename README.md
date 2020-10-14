@@ -1,4 +1,4 @@
-https://hauckc21.github.io/plotly-challenge/blob/main/Code/index.html
+https://hauckc21.github.io/plotly-challenge/
 
 # Plot.ly Homework - Belly Button Biodiversity
 
