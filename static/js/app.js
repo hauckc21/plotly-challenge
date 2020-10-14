@@ -5,7 +5,7 @@ console.log("This is app.js");
 function DrawBargraph(sampleId) {
     console.log(`DrawBargraph(${sampleId})`);
 
-    d3.json("samples.json").then((data) => {
+    d3.json("static/data/samples.json").then((data) => {
         // get samples data
         var samples = data.samples;
         // filter on id
@@ -39,7 +39,7 @@ function DrawBargraph(sampleId) {
 function DrawBubblechart(sampleId) {
     console.log(`DrawBubblechart(${sampleId})`);
 
-    d3.json("samples.json").then((data) => {
+    d3.json("static/data/samples.json").then((data) => {
         
         // get samples for this id
         var samples = data.samples;
@@ -84,7 +84,7 @@ function DrawBubblechart(sampleId) {
 function ShowMetadata(sampleId) {
     console.log(`ShowMetadata(${sampleId})`);
 
-    d3.json("samples.json").then((data) => {
+    d3.json("static/data/samples.json").then((data) => {
         
         var metadata = data.metadata;
         var resultArray = metadata.filter(md => md.id == sampleId);
@@ -115,7 +115,7 @@ function InitDashboard() {
     var selector = d3.select("#selDataset");
 
     //load the data
-    d3.json("samples.json").then((data) => {
+    d3.json("static/data/samples.json").then((data) => {
             console.log(data);
 
 
